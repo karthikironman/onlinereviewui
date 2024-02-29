@@ -1,47 +1,40 @@
+import { useState } from "react";
+import "./Login.css";
+import { useNavigate } from "react-router-dom";
 
-import React, { useState } from 'react';
-import './Login.css';
-import { Link } from 'react-router-dom';
-
-function LoginForm() {
-
-
+const Login1 = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const handleLogin = () => {
+    console.log({ username, password });
+    if (username === "rayees" && password === "sarkar") {
+      navigate("home");
+    } else alert("username or password is wrong");
+  };
   return (
-    <div className='container'>
-   <form>
-    <h1>Login </h1>
-<hr></hr>
-    <div className='ui divider'></div>
-    <div className='ui form'></div>
-
- <div className='field'>
-    <div className='label'>
-<label>Email:</label></div>
-<div className='emailinput'>
-<input type='text' name='email' placeholder='email' ></input>
-</div>
+    <div className="login-container">
+      <p>LOGIN</p>
+      <div className="login-container-row">
+        <p className="login-container-row-label">USERNAME</p>
+        <input
+          className="login-container-row-input"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        ></input>
+      </div>
+      <div className="login-container-row">
+        <p className="login-container-row-label">PASSWORD</p>
+        <input
+          className="login-container-row-input"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        ></input>
+      </div>
+      <button className="login-container-row-button" onClick={handleLogin}>
+        LOGIN
+      </button>
     </div>
-
-    <div className='field'>
-        <div className='label'>
-<label>Password:</label></div>
-<div className='passwordinput'>
-<input type='text' name='password' placeholder='password'  ></input>
-</div>
-    </div >
-
-<div className='loginbutton'>
-
-
-<button className='btn2'>
-  <Link style={{
-    textDecoration:'none',
-  }} to={'/Home'}>Submit</Link></button>
-
-</div>
-   </form>
-    </div>
-  )
-}
-
-export default LoginForm;
+  );
+};
+export default Login1;
